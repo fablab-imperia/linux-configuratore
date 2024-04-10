@@ -1,0 +1,15 @@
+# elettronica e disegno tecnico
+kicad
+fritzing
+librecad
+
+
+libreoffice
+gimp
+inkscape
+kolourpaint
+audacity
+kdenlive
+mscore
+ghex
+# codium
