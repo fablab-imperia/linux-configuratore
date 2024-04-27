@@ -3,13 +3,25 @@ kicad
 fritzing
 librecad
 
-
+# Software comuni
 libreoffice
 gimp
 inkscape
 kolourpaint
+
+# Multimedia
 audacity
 kdenlive
 mscore
+
+
+# 3D
+openscad
+blender
+
+
+# Programmazione
+# Richiede aggiunta repository suo, fatta in automatico in script install.sh
+codium
+arduino
 ghex
-# codium
