@@ -12,7 +12,7 @@ kolourpaint
 # Multimedia
 audacity
 kdenlive
-mscore
+musescore
 
 
 # 3D
@@ -25,3 +25,4 @@ blender
 codium
 arduino
 ghex
+git
