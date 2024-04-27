@@ -27,8 +27,8 @@ usermod -a -G dialout fablab
 ##################
 #    SOFTWARE    #
 ##################
-apt -y update
-apt -y upgrade
+apt update
+apt upgrade --yes
 apt -y install $(grep -vE "#" list.txt | tr "\n" " ")
 apt -y autoremove
 
@@ -36,8 +36,8 @@ apt -y autoremove
 # URL per scaricare software stampa 3D
 URL_SW_STAMPANTE_3D="https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb"
 # Installare software FlashPrint
-wget -o /tmp/flashprint.deb "${URL_SW_STAMPANTE_3D}"
-apt install /tmp/flashprint.deb
+wget "${URL_SW_STAMPANTE_3D}"
+apt install ./flashprint.deb
 
 
 
