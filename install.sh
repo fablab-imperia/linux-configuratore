@@ -37,7 +37,7 @@ apt -y autoremove
 URL_SW_STAMPANTE_3D="https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb"
 # Installare software FlashPrint
 wget "${URL_SW_STAMPANTE_3D}"
-apt install ./flashprint.deb
+apt install ./e02d016281d06012ea71a671d1e1fdb7.deb
 
 
 
