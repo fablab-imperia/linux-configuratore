@@ -26,3 +26,4 @@ codium
 arduino
 ghex
 git
+renpy
