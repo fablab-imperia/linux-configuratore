@@ -5,18 +5,6 @@ if (( $EUID != 0 )); then
 fi
 
 
-##########################
-#    Parte di sistema    #
-##########################
-
-## Aggiunge chiavi di Codium come da sito https://vscodium.com/#install-on-debian-ubuntu-deb-package
-wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
-    | gpg --dearmor \
-    | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
-
-echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
-    | sudo tee /etc/apt/sources.list.d/vscodium.list
-
 
 # Aggiungo utente fablab al gruppo dialout per farlo accedere
 # alle porte seriali dall'IDE Arduino
@@ -29,31 +17,30 @@ usermod -a -G dialout fablab
 ##################
 apt update
 apt upgrade --yes
+
+#Install standard packages
 apt -y install $(grep -vE "#" list.txt | tr "\n" " ")
 apt -y autoremove
 
+# Install Google Chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo add-apt-repository "deb http://dl.google.com/linux/chrome/deb/ stable main"
+sudo apt update
+sudo apt -y install google-chrome-stable
 
-# URL per scaricare software stampa 3D
-URL_SW_STAMPANTE_3D="https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb"
-# Installare software FlashPrint
-wget "${URL_SW_STAMPANTE_3D}"
-apt install ./e02d016281d06012ea71a671d1e1fdb7.deb
+#Freecad
+add-apt-repository ppa:freecad-maintainers/freecad-stable
+apt update
+apt install -y freecad 
 
 
+#Visual Studio code
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+apt update
+apt install -y code
 
-# Installa DigitalLogicSim
-apt install unzip
-FAB_PACKAGES_FOLDER="/opt/fablab/packages"
-mkdir -p "${FAB_PACKAGES_FOLDER}"
-unzip packages/Digital-Logic-Sim.zip -d "${FAB_PACKAGES_FOLDER}"
-chmod +x "${FAB_PACKAGES_FOLDER}/Digital-Logic-Sim/Digital-Logic-Sim.x86_64"
 
-cat > /usr/share/applications/digital_logic_sim.desktop << EOF
-[Desktop Entry]
-Version=1.0
-Type=Application
-Terminal=false
-Exec=${FAB_PACKAGES_FOLDER}/Digital-Logic-Sim/Digital-Logic-Sim.x86_64
-Name=Digital Logic Sim
-EOF
-
+# Arduino IDE v2
+flatpak install flathub cc.arduino.IDE2
