@@ -44,3 +44,6 @@ apt install -y code
 
 # Arduino IDE v2
 flatpak install flathub cc.arduino.IDE2
+
+#Bambustudio
+flatpak install flathub com.bambulab.BambuStudio
