@@ -47,3 +47,11 @@ flatpak install flathub cc.arduino.IDE2
 
 #Bambustudio
 flatpak install flathub com.bambulab.BambuStudio
+
+#Flashprint for flashforge
+wget -O flashprint.deb https://flashforge-resource.oss-us-east-1.aliyuncs.com/FlashPrint_5.8.7/flashprint5_5.8.7_amd64.deb && sudo apt install ./flashprint.deb
+
+#Google Gemini
+sudo apt update
+sudo apt install nodejs npm
+npm install -g @google/gemini-cli
