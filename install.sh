@@ -52,6 +52,7 @@ flatpak install flathub com.bambulab.BambuStudio
 wget -O flashprint.deb https://flashforge-resource.oss-us-east-1.aliyuncs.com/FlashPrint_5.8.7/flashprint5_5.8.7_amd64.deb && sudo apt install ./flashprint.deb
 
 #Google Gemini
-sudo apt update
-sudo apt install nodejs npm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc
+nvm install --lts
 npm install -g @google/gemini-cli
